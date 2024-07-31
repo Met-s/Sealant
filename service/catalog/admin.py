@@ -39,7 +39,13 @@ class ServiceCompanyAdmin(admin.ModelAdmin):
 
 
 class MachineAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'machineSerialNumber',
+                    'engineModel', 'engineNumber',
+                    'transmissionModel', 'transmissionNumber',
+                    'driveAxleModel', 'driveAxleNumber',
+                    'steerableAxleModel', 'steerableAxleNumber',
+                    'deliveryContractNumber', 'consignee',
+                    'client', 'serviceCompany')
 
 
 class MaintenanceTypeAdmin(admin.ModelAdmin):
@@ -51,7 +57,7 @@ class OrganMaintenanceAdmin(admin.ModelAdmin):
 
 
 class MaintenanceAdmin(admin.ModelAdmin):
-    pass
+    list_display = [field.name for field in Maintenance._meta.get_fields()]
 
 
 class FailureNodeAdmin(admin.ModelAdmin):
@@ -63,7 +69,7 @@ class RepairMethodAdmin(admin.ModelAdmin):
 
 
 class ClaimsAdmin(admin.ModelAdmin):
-    pass
+    list_display = [field.name for field in Claims._meta.get_fields()]
 
 
 admin.site.register(Clients, ClientsAdmin)

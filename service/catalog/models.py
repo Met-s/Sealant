@@ -108,7 +108,7 @@ class Machine(models.Model):
     steerableAxleNumber = models.TextField()  # Номер управляемого моста
     deliveryContractNumber = models.TextField()  # Номер контракта на поставку
     shipmentDate = models.DateField()  # Дата отгрузки с завода
-    consignee = models.TextField()  # Грузополучатель
+    consignee = models.TextField()  # Грузополучатель(Client)
     deliveryAddress = models.TextField()  # Адрес доставки (эксплуатации)
     equipment = models.TextField()  # Оборудование (дополнительные опции)
     client = models.ForeignKey(Clients, on_delete=models.CASCADE)

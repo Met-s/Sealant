@@ -1,0 +1,154 @@
+ @font-face {
+     src: url('../fonts/PT-Astra-Sans_Bold-Italic.ttf');
+     font-family: 'PT-Astra-Sans_Bold-Italic';
+ }
+ @font-face {
+     src: url('../fonts/PT-Astra-Sans_Bold.ttf');
+     font-family: 'PT-Astra-Sans_Bold';
+ }
+ @font-face {
+     src: url('../fonts/PT-Astra-Sans_Italic.ttf');
+     font-family: 'PT-Astra-Sans_Italic';
+ }
+ @font-face {
+     src: url('../fonts/PT-Astra-Sans_Regular.ttf');
+     font-family: 'PT-Astra-Sans_Regular';
+ }
+
+ header {
+     display: grid;
+     grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+     font-family: 'PT-Astra-Sans_Italic', Arial, Helvetica, sans-serif;
+     border: 2px solid #163E6C;
+     background-color: #d7d8da;
+     border-radius: 5px;
+     padding: 5px;
+ }
+
+ .logo {
+     display: block;
+     grid-column-start: 1;
+     height: 50px;
+}
+
+.headerContact {
+    display: block;
+    grid-column-start: 2;
+    margin-left: auto;
+    scroll-margin-right: revert;
+
+    /*padding: 10px 10px 1px 1px;*/
+    /*align-items: center;*/
+    font-size: 2em;
+}
+
+.headerIntOut {
+    display: block;
+    grid-column-start: 3;
+    /*padding: 10px 10px 1px 1px;*/
+    /*align-items: center;*/
+    margin-left: auto;
+    /*padding-left: 10em;*/
+    /*position:  relative;*/
+    /*left: 5rem;*/
+}
+
+ .headerText {
+     display: block;
+     grid-area: 2 / 1 / 2 / 4;
+     margin-left: auto;
+     margin-right: auto;
+     font-size: 3em;
+}
+
+footer {
+    display: grid;
+    grid-template-columns:  50% 50%;
+    font-family: PT-Astra-Sans_Bold-Italic, Arial, Helvetica, sans-serif;
+    font-size: 2em;
+
+    border: 2px solid #163E6C;
+    background-color: #d7d8da;
+    border-radius: 5px;
+    padding: 5px;
+}
+footer > div {
+     margin-left: auto;
+     margin-right: auto;
+}
+     /*padding-left: 3em;*/
+     /*padding: 1px 1px 1px 200px;*/
+     /*align-items: center;*/
+
+     /*grid-column: 1 / 4;*/
+     /*grid-row: 2;*/
+     /*font-size: 3em;*/
+     /*align-items: flex-end;*/
+     /*padding: 10px 20px 0px 200px;*/
+     /*display: flex;*/
+
+     /*flex-direction: column;*/
+     /*justify-content: space-between;*/
+     /*align-items: center;*/
+     /*!*padding: 10px 0px 0px 0px;*!*/
+     /*font-size: 20px;*/
+     /*text-shadow: #163E6C;*/
+
+
+/*    !*padding-top: 5px;*!*/
+/*    !*font-family: 'PT Astra Sans Bold Italic', serif;*!*/
+/*    font-size: 35px;*/
+/*    text-shadow: 1px 1px 2px #163E6C;*/
+/*}*/
+
+
+
+
+/*    !*display: flex;*!*/
+/*    !*align-items: center;*!*/
+/*    padding: 0px 30px 20px 0px;*/
+/*    font-size: 30px;*/
+
+
+/*}*/
+
+/*content {*/
+/*    background-color: #6f94c6;*/
+/*}*/
+
+/*footer {*/
+/*    display: block;*/
+
+/*    font-family: 'PT-Astra-Sans_Italic', Arial, Helvetica, sans-serif;*/
+/*    border: 2px solid #163E6C;*/
+/*    background-color: #d7d8da;*/
+/*    border-radius: 5px;*/
+/*    padding: 1em;*/
+/*}*/
+
+
+/* резиновой (тянущейся);*/
+/*адаптивной — основные разрешения экранов: 1920x1080, 1366x768, 1536x864, 1440x900, 360x640;*/
+/* Интерфейс сервиса должен быть реализован с применением ключевых элементов фирменного стиля бренда «Силант»:*/
+
+/*Цвета: #163E6C, #D20A11, #EBE6D6.     #bec6ce*/
+/*Шрифт: PT Astra Sans.*/
+/* .item-1 {*/
+/*    background-color: rgb(161, 48, 48);*/
+/*}*/
+
+/*.item-2 {*/
+/*    background-color: rgb(49, 163, 68);*/
+/*}*/
+
+/*.item-3 {*/
+/*    background-color: rgb(34, 32, 180);*/
+/*}*/
+
+/*.item-4 {*/
+/*    background-color: rgb(207, 219, 29);*/
+/*}*/
+
+/*.item-5 {*/
+/*    background-color: rgb(175, 52, 165);*/
+/*}*/
