@@ -61,6 +61,16 @@
      font-size: 3em;
 }
 
+content {
+    display: block;
+    font-family: PT-Astra-Sans_Regular, Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    border: 2px solid #163E6C;
+    background-color: #d7d8da;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 footer {
     display: grid;
     grid-template-columns:  50% 50%;

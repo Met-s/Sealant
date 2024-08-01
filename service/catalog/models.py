@@ -99,8 +99,7 @@ class Machine(models.Model):
     transmissionNumber = models.TextField()  # Серийный номер трансмиссии
     driveAxleModel = models.ForeignKey(DriveAxleModel,
                                        on_delete=models.CASCADE)  #
-    # Модель ведущего
-    # моста
+    # Модель ведущего моста
     driveAxleNumber = models.TextField()  # Серийный номер ведущего моста
     steerableAxleModel = models.ForeignKey(SteerableAxleModel,
                                            on_delete=models.CASCADE)  #
