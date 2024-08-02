@@ -112,3 +112,7 @@ class ClaimsSerializer(serializers.ModelSerializer):
         fields = ['id', 'failureDate', 'operatingTime', 'failureNode',
                   'failureDescription', 'repairMethod', 'usedSpareParts',
                   'repairDate', 'equipmentDowntime','machine', 'serviceCompany']
+
+
+# def indexPage(request):
+#     return render(request, '')

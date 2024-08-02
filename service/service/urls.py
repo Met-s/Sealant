@@ -17,7 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# from rest_framework import routers
+# from catalog import views
+
+
+# router = routers.DefaultRouter()
+# router.register(r'machine', views.MachineViewSet,
+#                 basename='api_machine_model')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('catalog')),
+    # path('', include('catalog.urls')),
+
+
 ]
