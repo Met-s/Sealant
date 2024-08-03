@@ -16,7 +16,7 @@ from .serializers import UserSerializer, RoleSerializer, ClientsSerializer, \
     MaintenanceSerializer, FailureNodeSerializer, RepairMethodSerializer, \
     ClaimsSerializer
 from django.contrib.auth.models import User
-from .forms import MaintenanceForm, MachineForm, ClaimsForm
+from .forms import *
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -149,6 +149,22 @@ class ClaimsViewSet(viewsets.ModelViewSet):
                         'equipmentDowntime', 'machine', 'serviceCompany']
 
 
-def mainPage(request):
-    return render(request, '/catalog/flatpages/default.html', {})
+def indexPage(request):
+    return render(request, 'catalog/flatpages/default.html')
 
+
+def claim_edit(request, pk):
+    try:
+        claim = Claims.objects.get(id=pk)
+    except Claims.DoesNotExist:
+        return redirect('html_404')
+
+    if request.method == 'POST':
+        form = ClaimsForm(request.POST, instance=claim)
+        if form.is_valid():
+            form.save()
+            return redirect('mainPage')
+    else:
+        form = ClaimsForm(instance=claim)
+
+    return render(request, 'App/claim_create.html', {'form': form})
