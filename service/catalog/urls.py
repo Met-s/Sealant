@@ -2,7 +2,7 @@ from rest_framework import routers
 from django.urls import path, include
 
 from . import views
-from .views import indexPage
+from .views import MachineList
 
 # from .views import *
 
@@ -13,7 +13,8 @@ router.register(r'machine', views.MachineViewSet,
 
 urlpatterns = [
     path('api/', include(router.urls), name='api'),
-    path('',  indexPage, name='mainPage'),
+    # path('',  index_page, name='main_page'),
+    path('', MachineList.as_view(), name='machines'),
 
 ]
 

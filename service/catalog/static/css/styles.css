@@ -1,164 +1,244 @@
- @font-face {
-     src: url('../fonts/PT-Astra-Sans_Bold-Italic.ttf');
-     font-family: 'PT-Astra-Sans_Bold-Italic';
- }
- @font-face {
-     src: url('../fonts/PT-Astra-Sans_Bold.ttf');
-     font-family: 'PT-Astra-Sans_Bold';
- }
- @font-face {
-     src: url('../fonts/PT-Astra-Sans_Italic.ttf');
-     font-family: 'PT-Astra-Sans_Italic';
- }
- @font-face {
-     src: url('../fonts/PT-Astra-Sans_Regular.ttf');
-     font-family: 'PT-Astra-Sans_Regular';
- }
-
- header {
-     display: grid;
-     grid-template: repeat(2, 1fr) / repeat(3, 1fr);
-     font-family: 'PT-Astra-Sans_Italic', Arial, Helvetica, sans-serif;
-     border: 2px solid #163E6C;
-     background-color: #d7d8da;
-     border-radius: 5px;
-     padding: 5px;
- }
-
- .logo {
-     display: block;
-     grid-column-start: 1;
-     height: 50px;
+@font-face {
+    src: url('../fonts/PT-Astra-Sans_Bold-Italic.ttf') format('opentype');
+    font-family: 'PT-Astra-Sans_Bold-Italic';
 }
 
-.headerContact {
-    display: block;
-    grid-column-start: 2;
-    margin-left: auto;
-    scroll-margin-right: revert;
+@font-face {
+    src: url('../fonts/PT-Astra-Sans_Bold.ttf') format('opentype');
+    font-family: 'PT-Astra-Sans_Bold';
+}
 
-    /*padding: 10px 10px 1px 1px;*/
-    /*align-items: center;*/
-    font-size: 2em;
+@font-face {
+    src: url('../fonts/PT-Astra-Sans_Italic.ttf') format('opentype');
+    font-family: 'PT-Astra-Sans_Italic';
+}
+
+@font-face {
+    src: url('../fonts/PT-Astra-Sans_Regular.ttf') format('opentype');
+    font-family: 'PT-Astra-Sans_Regular';
+}
+
+body, html {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+    grid-row-gap: 1em;
+  /*Цвета: #163E6C, #D20A11, #EBE6D6.*/
+    /*background: #EBE6D6;*/
+    width: 100%;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    color: #163E6C;
+    background: #EBE6D6;
+    border: 2px solid #163E6C;
+    font-family: PT-Astra-Sans_Bold-Italic, Arial, Helvetica, sans-serif;
+    height: 100px;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 20px 20px 1px 20px;
+}
+
+.logo {
+    width: 70%;
+    height: 70%;
+}
+.headerContact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 2;
+    align-items: center;
+    padding: 10px 10px 15px 0px;
+    font-family: 'PT-Astra-Sans_Regular', serif;
+    font-size: 20px;
+}
+
+.headerText {
+    font-family: 'PT Astra Sans Bold Italic', serif;
+    font-size: 34px;
 }
 
 .headerIntOut {
-    display: block;
-    grid-column-start: 3;
-    /*padding: 10px 10px 1px 1px;*/
-    /*align-items: center;*/
-    margin-left: auto;
-    /*padding-left: 10em;*/
-    /*position:  relative;*/
-    /*left: 5rem;*/
+    width: 150px;
+    height: 40px;
+    padding-right: 20px;
+    font-size: 18px;
+    font-family: 'PT Astra Sans Regular', serif;
 }
 
- .headerText {
-     display: block;
-     grid-area: 2 / 1 / 2 / 4;
-     margin-left: auto;
-     margin-right: auto;
-     font-size: 3em;
-}
+/*Цвета: #163E6C, #D20A11, #EBE6D6.
+    адаптивной — основные разрешения экранов:
+    1920x1080, 1366x768, 1536x864, 1440x900, 360x640;
+*/
+.content {
+    display: flex;
+    flex-direction: column;
+    color: #163E6C;
+    background: #EBE6D6;
 
-content {
-    display: block;
-    font-family: PT-Astra-Sans_Regular, Arial, Helvetica, sans-serif;
-    font-size: 2em;
+    padding: 10px ;
     border: 2px solid #163E6C;
-    background-color: #d7d8da;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 10px;
+    height: 100%;
+    /*grid-row-gap: 1em;*/
+
+    /* position: fixed;*/
+    /*bottom: 2;*/
+    /*left: 0;*/
+    /*right: 0;*/
 }
+
+
+
+/*Таблица */
+
+.table {
+    border: 1px solid grey;
+    max-width: 100em;
+    font-family: 'PT-Astra-Sans_Regular', Arial, Helvetica, sans-serif;
+}
+
+th {
+    border: 1px solid grey;
+}
+
+td {
+    border: 1px solid grey;
+    padding: 5px;
+    scroll-margin-right: revert;
+}
+
+tr {
+    font-size: small;
+    scroll-margin-right: revert;
+}
+
+.tr_1 {
+    background-color: #d7d8da;
+}
+
+.tr_2 {
+    background-color: white;
+}
+/*__~~~~~~_*/
 
 footer {
-    display: grid;
-    grid-template-columns:  50% 50%;
-    font-family: PT-Astra-Sans_Bold-Italic, Arial, Helvetica, sans-serif;
-    font-size: 2em;
-
+    display: flex;
+    color: #163E6C;
+    background: #EBE6D6;
     border: 2px solid #163E6C;
-    background-color: #d7d8da;
-    border-radius: 5px;
-    padding: 5px;
+    justify-content: space-between;
+    padding: 10px 50px 10px 50px;
+    border-radius: 10px;
+    font-family: 'PT Astra Sans Bold Italic', serif;
+    font-size: 24px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
 }
-footer > div {
-     margin-left: auto;
-     margin-right: auto;
+
+/*++++================================================================*/
+
+/* Разрешение экрана: 1920x1080 и 1366x768 */
+@media (min-width: 1366px) {
+    .headerTextMob {
+        display: none;
+    }
+    }
+
+/*Разрешение экрана: 1536x864 и 1440x900 */
+@media (max-width: 1365px) {
+    .headerTextMob {
+        display: none;
+    }
+    .headerText {
+        font-size: 20px;
+    }
+    .headerContact {
+        font-size: 18px;
+        width: 40%;
+        -webkit-flex-grow: initial;
+        padding-right: 0px;
+    }
+    .logo {
+        width: 60%;
+        height: 60%;
+    }
+    .headerIntOut {
+        font-size: 15px;
+        text-align: right;
+    }
+    .content {
+        font-size: 80%;
+    }
+    footer {
+        font-size: 20px;
+        background: rgba(23, 39, 121, 0.34);
+    }
 }
-     /*padding-left: 3em;*/
-     /*padding: 1px 1px 1px 200px;*/
-     /*align-items: center;*/
 
-     /*grid-column: 1 / 4;*/
-     /*grid-row: 2;*/
-     /*font-size: 3em;*/
-     /*align-items: flex-end;*/
-     /*padding: 10px 20px 0px 200px;*/
-     /*display: flex;*/
+@media (max-width: 870px) {
+    header {
+        height: 60px;
+    }
+    .headerText {
+        font-size: 16px;
+    }
+    .headerTextMob {
+        display: none;
+    }
+    .content {
+        font-size: 50%;
+    }
+    .headerContact {
+        font-size: 14px;
+    }
+    .logo {
+        width: 80%;
+        height: 100%;
+    }
+    .headerIntOut {
+        font-size: 10px;
+    }
+    footer {
+        font-size: 16px;
+        background: #eac387;
+    }
+}
 
-     /*flex-direction: column;*/
-     /*justify-content: space-between;*/
-     /*align-items: center;*/
-     /*!*padding: 10px 0px 0px 0px;*!*/
-     /*font-size: 20px;*/
-     /*text-shadow: #163E6C;*/
-
-
-/*    !*padding-top: 5px;*!*/
-/*    !*font-family: 'PT Astra Sans Bold Italic', serif;*!*/
-/*    font-size: 35px;*/
-/*    text-shadow: 1px 1px 2px #163E6C;*/
-/*}*/
-
-
-
-
-/*    !*display: flex;*!*/
-/*    !*align-items: center;*!*/
-/*    padding: 0px 30px 20px 0px;*/
-/*    font-size: 30px;*/
-
-
-/*}*/
-
-/*content {*/
-/*    background-color: #6f94c6;*/
-/*}*/
-
-/*footer {*/
-/*    display: block;*/
-
-/*    font-family: 'PT-Astra-Sans_Italic', Arial, Helvetica, sans-serif;*/
-/*    border: 2px solid #163E6C;*/
-/*    background-color: #d7d8da;*/
-/*    border-radius: 5px;*/
-/*    padding: 1em;*/
-/*}*/
-
-
-/* резиновой (тянущейся);*/
-/*адаптивной — основные разрешения экранов: 1920x1080, 1366x768, 1536x864, 1440x900, 360x640;*/
-/* Интерфейс сервиса должен быть реализован с применением ключевых элементов фирменного стиля бренда «Силант»:*/
-
-/*Цвета: #163E6C, #D20A11, #EBE6D6.     #bec6ce*/
-/*Шрифт: PT Astra Sans.*/
-/* .item-1 {*/
-/*    background-color: rgb(161, 48, 48);*/
-/*}*/
-
-/*.item-2 {*/
-/*    background-color: rgb(49, 163, 68);*/
-/*}*/
-
-/*.item-3 {*/
-/*    background-color: rgb(34, 32, 180);*/
-/*}*/
-
-/*.item-4 {*/
-/*    background-color: rgb(207, 219, 29);*/
-/*}*/
-
-/*.item-5 {*/
-/*    background-color: rgb(175, 52, 165);*/
-/*}*/
+  /* Разрешение экрана: 360x640 */
+@media (max-width: 767px) {
+    header {
+        height: 30px;
+        padding: 5px 10px;
+    }
+    .logo {
+        width: 100%;
+        height: 30px;
+    }
+    .contact {
+        display: none;
+    }
+    .headerText {
+        display: none;
+    }
+    .headerContact {
+        width: auto;
+    }
+    .headerTextMob {
+        display: inline;
+        align-self: flex-start;
+        font-size: small;
+    }
+    .headerIntOut {
+        font-size: 10px;
+        width: 30%;
+    }
+    footer {
+        font-size: 12px;
+        background: #8fe790;
+    }
+}

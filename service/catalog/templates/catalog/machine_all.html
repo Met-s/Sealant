@@ -1,0 +1,59 @@
+{% extends 'catalog/flatpages/default.html' %}
+
+
+{% load static %}
+{% block title %}Все машины{% endblock %}
+<link rel="stylesheet" href="../../static/css/styles.css">
+{% block content %}
+
+ <table class="table">
+        <tr class="tr_1">
+            <td>Зав. № машины</td>
+            <td>Модель техники</td>
+            <td>Модель двигателя</td>
+            <td>Зав. № двигателя</td>
+            <td>Модель трансмиссии</td>
+            <td>Зав. № трансмиссии</td>
+            <td>Модель ведущего моста</td>
+            <td>Зав. № ведущего моста</td>
+            <td>Модель управляемого моста</td>
+            <td>Зав. № управляемого моста</td>
+            <td>Договор поставки №, дата</td>
+            <td>Дата отгрузки с завода</td>
+            <td>Грузополучатель (конечный потребитель)</td>
+            <td>Адрес поставки (эксплуатации)</td>
+            <td>Комплектация (доп. опции)</td>
+            <td>Клиент</td>
+            <td>Сервисная компания</td>
+        </tr>
+        {% for mach in machines %}
+
+        <tr class="tr_2">
+            <td>{{ mach.machineSerialNumber }}</td>
+            <td>{{ mach.machineModel }}</td>
+            <td>{{ mach.engineModel }}</td>
+            <td>{{ mach.engineNumber }}</td>
+            <td>{{ mach.transmissionModel }}</td>
+            <td>{{ mach.transmissionNumber }}</td>
+            <td>{{ mach.driveAxleModel }}</td>
+            <td>{{ mach.driveAxleNumber }}</td>
+            <td>{{ mach.steerableAxleModel }}</td>
+            <td>{{ mach.steerableAxleNumber }}</td>
+            <td>{{ mach.deliveryContractNumber }}</td>
+            <td>{{ mach.shipmentDate }}</td>
+            <td>{{ mach.consignee }}</td>
+            <td>{{ mach.deliveryAddress }}</td>
+            <td>{{ mach.equipment }}</td>
+            <td>{{ mach.client }}</td>
+            <td>{{ mach.serviceCompany }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+{% endblock content %}
+

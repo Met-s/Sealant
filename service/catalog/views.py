@@ -1,6 +1,7 @@
 
 import django_filters.rest_framework
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 from rest_framework import viewsets
 from rest_framework import permissions
 
@@ -8,6 +9,7 @@ from .models import Role, Clients, Managers, MachineModel, EngineModel, \
     TransmissionModel, DriveAxleModel, SteerableAxleModel, ServiceCompany, \
     Machine, MaintenanceType, OrganMaintenance, Maintenance, FailureNode, \
     RepairMethod, Claims
+
 from .serializers import UserSerializer, RoleSerializer, ClientsSerializer, \
     ManagersSerializer, MachineModelSerializer, EngineModelSerializer, \
     TransmissionModelSerializer, DriveAxleModelSerializer, \
@@ -15,6 +17,7 @@ from .serializers import UserSerializer, RoleSerializer, ClientsSerializer, \
     MaintenanceTypeSerializer, OrganMaintenanceSerializer, \
     MaintenanceSerializer, FailureNodeSerializer, RepairMethodSerializer, \
     ClaimsSerializer
+
 from django.contrib.auth.models import User
 from .forms import *
 
@@ -93,13 +96,14 @@ class MachineViewSet(viewsets.ModelViewSet):
     queryset = Machine.objects.all()
     serializer_class = MachineSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ['id', 'machineSerialNumber', 'machineModel',
-                        'engineModel','engineNumber', 'transmissionModel',
-                        'transmissionNumber', 'driveAxleModel',
-                        'driveAxleNumber', 'steerableAxleNumber',
-                        'deliveryContractNumber', 'shipmentDate',
-                        'consignee', 'deliveryAddress', ' equipment',
-                        'client', 'serviceCompany']
+    # filterset_fields = ['id', 'machineSerialNumber', 'machineModel',
+    #                     'engineModel','engineNumber', 'transmissionModel',
+    #                     'transmissionNumber', 'driveAxleModel',
+    #                     'driveAxleNumber', 'steerableAxleNumber',
+    #                     'deliveryContractNumber', 'shipmentDate',
+    #                     'consignee', 'deliveryAddress', 'equipment',
+    #                     'client', 'serviceCompany']
+
 
 
 class MaintenanceTypeViewSet(viewsets.ModelViewSet):
@@ -149,22 +153,13 @@ class ClaimsViewSet(viewsets.ModelViewSet):
                         'equipmentDowntime', 'machine', 'serviceCompany']
 
 
-def indexPage(request):
-    return render(request, 'catalog/flatpages/default.html')
+# def index_page(request):
+#     return render(request, 'catalog/machine_all.html', {})
 
 
-def claim_edit(request, pk):
-    try:
-        claim = Claims.objects.get(id=pk)
-    except Claims.DoesNotExist:
-        return redirect('html_404')
 
-    if request.method == 'POST':
-        form = ClaimsForm(request.POST, instance=claim)
-        if form.is_valid():
-            form.save()
-            return redirect('mainPage')
-    else:
-        form = ClaimsForm(instance=claim)
-
-    return render(request, 'App/claim_create.html', {'form': form})
+class MachineList(ListView):
+    model = Machine
+    # ordering = 'name'
+    template_name = 'catalog/machine_all.html'
+    context_object_name = 'machines'

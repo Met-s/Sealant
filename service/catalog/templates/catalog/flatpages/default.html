@@ -1,23 +1,32 @@
-
 <!DOCTYPE html>
-
+{% load static %}
+{% load i18n %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <link rel="stylesheet" href="../../../static/css/styles.css">
+    <title>{% block title %}{% endblock title %}</title>
+
 </head>
 <body>
     <header>
-        <img class="logo" src="../../../static/img/photo.png" alt="logo/photo.png"/>
+        <div>
+            <img class="logo" src="{% static 'img/photo.svg' %}" alt="Logo" />
+        </div>
+       <div class="headerContact">
+            <div class="contact">+7-8352-20-12-09, telegram</div>
+            <div class="headerText">Электронная сервисная книжка "Мой Силант"
+            </div>
+            <div class="headerTextMob">Электронная сервисная книжка
+            </div>
+       </div>
 
-        <div class="headerContact">+7-8352-20-12-09, telegram</div>
-        <label class="headerIntOut">
+         <label class="headerIntOut">
             <span class="label__title">Email:</span>
             <input class="label__input" type="email" placeholder="email@domain.com" required>
             <span class="label__hint">Form field hint</span>
          </label>
-        <div class="headerText">Электронная сервисная книжка "Мой Силант"</div>
+
     </header>
     <content class="content">
 
@@ -25,9 +34,22 @@
         Силант
                 RoleSet
         </div>
+
         <div>Результат поиска:</div>
+<!--        <div>-->
+
+<!--        {% block content %}-->
+<!--        {% endblock content %}-->
+
+<!--        </div>-->
+
+
     </content>
-    <footer>
+
+
+
+
+    <footer class="footer">
         <div>+7-8352-20-12-09, telegram</div>
         <div>Мой Силант 2024</div>
     </footer>

@@ -71,7 +71,7 @@ class MachineSerializer(serializers.ModelSerializer):
                   'engineNumber', 'transmissionModel', 'transmissionNumber',
                   'driveAxleModel', 'driveAxleNumber', 'steerableAxleNumber',
                   'deliveryContractNumber', 'shipmentDate', 'consignee',
-                  'deliveryAddress', ' equipment', 'client', 'serviceCompany']
+                  'deliveryAddress', 'equipment', 'client', 'serviceCompany']
 
 
 class MaintenanceTypeSerializer(serializers.HyperlinkedModelSerializer):
