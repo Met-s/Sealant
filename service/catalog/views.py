@@ -153,13 +153,7 @@ class ClaimsViewSet(viewsets.ModelViewSet):
                         'equipmentDowntime', 'machine', 'serviceCompany']
 
 
-# def index_page(request):
-#     return render(request, 'catalog/machine_all.html', {})
-
-
-
 class MachineList(ListView):
     model = Machine
-    # ordering = 'name'
     template_name = 'catalog/machine_all.html'
     context_object_name = 'machines'

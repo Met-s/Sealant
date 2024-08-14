@@ -20,19 +20,19 @@
             <div class="headerTextMob">Электронная сервисная книжка
             </div>
        </div>
-
-         <label class="headerIntOut">
-            <span class="label__title">Email:</span>
-            <input class="label__input" type="email" placeholder="email@domain.com" required>
-            <span class="label__hint">Form field hint</span>
-         </label>
-
+        {% if not request.user.is_authenticated %}
+    <a href="{% url 'login' %}" ><button class="headerIntOut">Log In</button></a>
+    {% else %}
+    <a href="{% url 'logout' %}" ><button class="headerIntOut">Log Out</button></a>
+    {% endif %}
     </header>
-    <content class="content">
 
-        <div>Проверьте комплектацию и технические характеристики техники
-        Силант
-                RoleSet
+    <content class="content">
+        {% block user %}{% endblock user %}
+
+
+        <div>
+            Проверьте комплектацию и технические характеристики техники Силант
         </div>
 
         <div>Результат поиска:</div>

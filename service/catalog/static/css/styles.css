@@ -61,11 +61,16 @@ header {
 }
 
 .headerIntOut {
-    width: 150px;
+    width: 100px;
     height: 40px;
     padding-right: 20px;
     font-size: 18px;
     font-family: 'PT Astra Sans Regular', serif;
+    color: #001d5c;
+    background: #EBE6D6;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
 }
 
 /*Цвета: #163E6C, #D20A11, #EBE6D6.
@@ -82,12 +87,6 @@ header {
     border: 2px solid #163E6C;
     border-radius: 10px;
     height: 100%;
-    /*grid-row-gap: 1em;*/
-
-    /* position: fixed;*/
-    /*bottom: 2;*/
-    /*left: 0;*/
-    /*right: 0;*/
 }
 
 
@@ -169,7 +168,7 @@ footer {
     }
     .headerIntOut {
         font-size: 15px;
-        text-align: right;
+        /*text-align: right;*/
     }
     .content {
         font-size: 80%;
@@ -200,9 +199,6 @@ footer {
         width: 80%;
         height: 100%;
     }
-    .headerIntOut {
-        font-size: 10px;
-    }
     footer {
         font-size: 16px;
         background: #eac387;
@@ -231,11 +227,11 @@ footer {
     .headerTextMob {
         display: inline;
         align-self: flex-start;
-        font-size: small;
+        font-size: 15px;
     }
     .headerIntOut {
-        font-size: 10px;
-        width: 30%;
+        font-size: 15px;
+        height: 30px;
     }
     footer {
         font-size: 12px;
