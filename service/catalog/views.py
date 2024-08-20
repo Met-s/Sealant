@@ -22,11 +22,17 @@ from django.contrib.auth.models import User
 from .forms import *
 
 
+class ReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.method in permissions.SAFE_METHODS
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filterset_fields = ['id', 'username', 'first_name', 'last_name',
                         'email', 'is_superuser', 'is_active']
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class RoleViewSet(viewsets.ModelViewSet):
@@ -34,6 +40,7 @@ class RoleViewSet(viewsets.ModelViewSet):
     serializer_class = RoleSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class ClientsViewSet(viewsets.ModelViewSet):
@@ -41,6 +48,7 @@ class ClientsViewSet(viewsets.ModelViewSet):
     serializer_class = ClientsSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description', 'role']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class ManagersViewSet(viewsets.ModelViewSet):
@@ -48,6 +56,7 @@ class ManagersViewSet(viewsets.ModelViewSet):
     serializer_class = ManagersSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description', 'role']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class MachineModelViewSet(viewsets.ModelViewSet):
@@ -55,6 +64,7 @@ class MachineModelViewSet(viewsets.ModelViewSet):
     serializer_class = MachineModelSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class EngineModelViewSet(viewsets.ModelViewSet):
@@ -62,6 +72,7 @@ class EngineModelViewSet(viewsets.ModelViewSet):
     serializer_class = EngineModelSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.IsAdminUser]
 
 
 class TransmissionModelViewSet(viewsets.ModelViewSet):
@@ -69,6 +80,7 @@ class TransmissionModelViewSet(viewsets.ModelViewSet):
     serializer_class = TransmissionModelSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.DjangoModelPermissions]
 
 
 class DriveAxleModelViewSet(viewsets.ModelViewSet):
@@ -76,6 +88,7 @@ class DriveAxleModelViewSet(viewsets.ModelViewSet):
     serializer_class = DriveAxleModelSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
 
 
 class SteerableAxleModelViewSet(viewsets.ModelViewSet):
@@ -83,6 +96,7 @@ class SteerableAxleModelViewSet(viewsets.ModelViewSet):
     serializer_class = SteerableAxleModelSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class ServiceCompanyModelViewSet(viewsets.ModelViewSet):
@@ -90,19 +104,21 @@ class ServiceCompanyModelViewSet(viewsets.ModelViewSet):
     serializer_class = ServiceCompanySerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description', 'role']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class MachineViewSet(viewsets.ModelViewSet):
     queryset = Machine.objects.all()
     serializer_class = MachineSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    # filterset_fields = ['id', 'machineSerialNumber', 'machineModel',
-    #                     'engineModel','engineNumber', 'transmissionModel',
-    #                     'transmissionNumber', 'driveAxleModel',
-    #                     'driveAxleNumber', 'steerableAxleNumber',
-    #                     'deliveryContractNumber', 'shipmentDate',
-    #                     'consignee', 'deliveryAddress', 'equipment',
-    #                     'client', 'serviceCompany']
+    filterset_fields = ['id', 'machineSerialNumber', 'machineModel',
+                        'engineModel','engineNumber', 'transmissionModel',
+                        'transmissionNumber', 'driveAxleModel',
+                        'driveAxleNumber', 'steerableAxleNumber',
+                        'deliveryContractNumber', 'shipmentDate',
+                        'consignee', 'deliveryAddress', 'equipment',
+                        'client', 'serviceCompany']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 
@@ -111,6 +127,7 @@ class MaintenanceTypeViewSet(viewsets.ModelViewSet):
     serializer_class = MaintenanceTypeSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class OrganMaintenanceViewSet(viewsets.ModelViewSet):
@@ -118,6 +135,7 @@ class OrganMaintenanceViewSet(viewsets.ModelViewSet):
     serializer_class = OrganMaintenanceSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class MaintenanceViewSet(viewsets.ModelViewSet):
@@ -127,6 +145,7 @@ class MaintenanceViewSet(viewsets.ModelViewSet):
     filterset_fields = ['id', 'maintenanceType', 'maintenanceDate',
                         'motorResource', 'workOrderNumber', 'workOrderDate',
                         'organMaintenance', 'machine', 'serviceCompany']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class FailureNodeViewSet(viewsets.ModelViewSet):
@@ -134,6 +153,7 @@ class FailureNodeViewSet(viewsets.ModelViewSet):
     serializer_class = FailureNodeSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class RepairMethodViewSet(viewsets.ModelViewSet):
@@ -141,6 +161,7 @@ class RepairMethodViewSet(viewsets.ModelViewSet):
     serializer_class = RepairMethodSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'description']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class ClaimsViewSet(viewsets.ModelViewSet):
@@ -151,9 +172,43 @@ class ClaimsViewSet(viewsets.ModelViewSet):
                         'failureNode', 'failureDescription', 'repairMethod',
                         'usedSpareParts', 'repairDate',
                         'equipmentDowntime', 'machine', 'serviceCompany']
+    permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
 class MachineList(ListView):
     model = Machine
     template_name = 'catalog/machine_all.html'
     context_object_name = 'machines'
+
+
+def machine_create(request):
+    if request.method == 'POST':
+        form = MachineForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('machines')
+    else:
+        form = MachineForm()
+    return render(request, 'catalog/machine_create.html', {'form': form})
+
+
+def maintenance_create(request):
+    if request.method == 'POST':
+        form = MaintenanceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('machines')
+    else:
+        form = MaintenanceForm()
+    return render(request, 'catalog/maintenance_create.html', {'form': form})
+
+
+def claims_create(request):
+    if request.method == 'POST':
+        form = ClaimsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('machines')
+    else:
+        form = ClaimsForm()
+    return render(request, 'catalog/claims_create.html', {'form': form})

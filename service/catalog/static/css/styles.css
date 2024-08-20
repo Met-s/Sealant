@@ -60,7 +60,12 @@ header {
     font-size: 34px;
 }
 
-.headerIntOut {
+.headerTextMob {
+    font-family: 'PT Astra Sans Bold Italic', serif;
+    font-size: 34px;
+}
+
+.headerIntOutButton {
     width: 100px;
     height: 40px;
     padding-right: 20px;
@@ -89,14 +94,21 @@ header {
     height: 100%;
 }
 
+/*
+==========================================================
 
+*/
 
 /*Таблица */
-
+.div {
+    max-width: 100%;
+}
 .table {
     border: 1px solid grey;
     max-width: 100em;
     font-family: 'PT-Astra-Sans_Regular', Arial, Helvetica, sans-serif;
+
+    width: 100%;
 }
 
 th {
@@ -120,8 +132,41 @@ tr {
 
 .tr_2 {
     background-color: white;
+    font-family: 'PT-Astra-Sans_Bold-Italic', Arial, Helvetica, sans-serif;
+}
+.tableContainerButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.tr_3 {
+
+
+    width: 80%;
+    border: 1px solid red;
+    max-width: 1em;
+    overflow: hidden;
+    background: #1A01CC;
+
+
+    /*max-height: 18px;*/
+    /*overflow: auto;*/
+    /*max-content: 18px;*/
+}
+.tableButton {
+    width: 100px;
+    height: 30px;
+    padding-right: 20px;
+    font-size: 15px;
+    font-family: 'PT Astra Sans Regular', serif;
+    color: #001d5c;
+    background: #EBE6D6;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
 }
 /*__~~~~~~_*/
+
 
 footer {
     display: flex;
@@ -143,15 +188,12 @@ footer {
 
 /* Разрешение экрана: 1920x1080 и 1366x768 */
 @media (min-width: 1366px) {
-    .headerTextMob {
-        display: none;
-    }
     }
 
 /*Разрешение экрана: 1536x864 и 1440x900 */
 @media (max-width: 1365px) {
     .headerTextMob {
-        display: none;
+        font-size: 20px;
     }
     .headerText {
         font-size: 20px;
@@ -166,7 +208,7 @@ footer {
         width: 60%;
         height: 60%;
     }
-    .headerIntOut {
+    .headerIntOutButton {
         font-size: 15px;
         /*text-align: right;*/
     }
@@ -187,7 +229,7 @@ footer {
         font-size: 16px;
     }
     .headerTextMob {
-        display: none;
+        font-size: 16px;
     }
     .content {
         font-size: 50%;
@@ -219,17 +261,17 @@ footer {
         display: none;
     }
     .headerText {
-        display: none;
+        display: inline;
+        align-self: flex-start;
+        font-size: 15px;
     }
     .headerContact {
         width: auto;
     }
     .headerTextMob {
-        display: inline;
-        align-self: flex-start;
-        font-size: 15px;
+        display: none;
     }
-    .headerIntOut {
+    .headerIntOutButton {
         font-size: 15px;
         height: 30px;
     }

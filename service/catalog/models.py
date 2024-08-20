@@ -87,24 +87,27 @@ class ServiceCompany(models.Model):
 
 class Machine(models.Model):
     """Машина"""
-    machineSerialNumber = models.TextField()  # Зав. № машины
+    machineSerialNumber = models.TextField(unique=True)  # Зав. № машины
     machineModel = models.ForeignKey(MachineModel,
                                      on_delete=models.CASCADE)  # Модель машины
     engineModel = models.ForeignKey(EngineModel, on_delete=models.CASCADE)
     # Модель двигателя
-    engineNumber = models.TextField()  # Серийный номер двигателя
+    engineNumber = models.TextField(unique=True)  # Серийный номер двигателя
     transmissionModel = models.ForeignKey(TransmissionModel,
                                           on_delete=models.CASCADE)  #
     # Модель трансмиссии
-    transmissionNumber = models.TextField()  # Серийный номер трансмиссии
+    transmissionNumber = models.TextField(unique=True)  # Серийный номер
+    # трансмиссии
     driveAxleModel = models.ForeignKey(DriveAxleModel,
                                        on_delete=models.CASCADE)  #
     # Модель ведущего моста
-    driveAxleNumber = models.TextField()  # Серийный номер ведущего моста
+    driveAxleNumber = models.TextField(unique=True)  # Серийный номер ведущего
+    # моста
     steerableAxleModel = models.ForeignKey(SteerableAxleModel,
                                            on_delete=models.CASCADE)  #
     # Модель управляемого моста
-    steerableAxleNumber = models.TextField()  # Номер управляемого моста
+    steerableAxleNumber = models.TextField(unique=True)  # Номер управляемого
+    # моста
     deliveryContractNumber = models.TextField()  # Номер контракта на поставку
     shipmentDate = models.DateField()  # Дата отгрузки с завода
     consignee = models.TextField()  # Грузополучатель(Client)
@@ -139,7 +142,8 @@ class Maintenance(models.Model):
                                         on_delete=models.CASCADE)  # Тип техобслуживания
     maintenanceDate = models.DateField()  # Дата техобслуживания
     motorResource = models.IntegerField()  # Часы, м/час моторесурс
-    workOrderNumber = models.TextField()  # Номер заказа на работу
+    workOrderNumber = models.TextField(max_length=64)  # Номер заказа на
+    # работу
     workOrderDate = models.DateField()  # Дата заказа на работу
     organMaintenance = models.ForeignKey(OrganMaintenance,
                                          on_delete=models.CASCADE)  # Организация, выполнившая техобслуживание

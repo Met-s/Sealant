@@ -1,0 +1,64 @@
+{% extends 'catalog/flatpages/default.html' %}
+{% load static %}
+{% block title %}Закрепление машины за клиентом{% endblock title %}
+
+<link rel="stylesheet" href="../../static/css/styles.css">
+{% block content %}
+
+    <h3>Закрепление машины за клиентом revers</h3>
+
+    <form method="post">
+        {% csrf_token %}
+        <table class="table">
+            <tr class="tr_1">
+                <td>{{ form.machineSerialNumber.label_tag }}</td>
+                <td>{{ form.machineModel.label_tag }}</td>
+                <td>{{ form.engineModel.label_tag }}</td>
+                <td>{{ form.engineNumber.label_tag }}</td>
+                <td>{{ form.transmissionModel.label_tag }}</td>
+                <td>{{ form.transmissionNumber.label_tag }}</td>
+                <td>{{ form.driveAxleModel.label_tag }}</td>
+                <td>{{ form.driveAxleNumber.label_tag }}</td>
+                <td>{{ form.steerableAxleModel.label_tag }}</td>
+                <td>{{ form.steerableAxleNumber.label_tag }}</td>
+                <td>{{ form.deliveryContractNumber.label_tag }}</td>
+                <td>{{ form.shipmentDate.label_tag }}</td>
+                <td>{{ form.consignee.label_tag }}</td>
+                <td>{{ form.deliveryAddress.label_tag }}</td>
+                <td>{{ form.equipment.label_tag }}</td>
+                <td>{{ form.client.label_tag }}</td>
+                <td>{{ form.serviceCompany.label_tag }}</td>
+            </tr>
+            <tr>
+                <td >
+                    {{ form.machineSerialNumber }}
+                </td>
+                <td>{{ form.machineModel }}</td>
+                <td>{{ form.engineModel }}</td>
+                <td>{{ form.engineNumber }}</td>
+                <td>{{ form.transmissionModel }}</td>
+                <td>{{ form.transmissionNumber }}</td>
+                <td>{{ form.driveAxleModel }}</td>
+                <td>{{ form.driveAxleNumber }}</td>
+                <td>{{ form.steerableAxleModel }}</td>
+                <td>{{ form.steerableAxleNumber }}</td>
+                <td>{{ form.deliveryContractNumber }}</td>
+                <td>{{ form.shipmentDate }}</td>
+                <td>{{ form.consignee }}</td>
+                <td>{{ form.deliveryAddress }}</td>
+                <td>{{ form.equipment }}</td>
+                <td>{{ form.client }}</td>
+                <td>{{ form.serviceCompany }}</td>
+            </tr>
+        </table>
+        <div class="tableContainerButton">
+            <button class="tableButton" type="submit">Save</button>
+        </div>
+    </form>
+
+    <div class="tableContainerButton">
+        <a href="{% url 'machines' %}">
+            <button class="tableButton">Cansel</button></a>
+    </div>
+
+{% endblock content %}

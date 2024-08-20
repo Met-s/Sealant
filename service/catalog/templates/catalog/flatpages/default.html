@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../../static/css/styles.css">
+    <link rel="shortcut icon" href="../../../static/img/Logotype_RGB_1.jpg" type="image/jpg">
     <title>{% block title %}{% endblock title %}</title>
 
 </head>
@@ -15,16 +16,17 @@
         </div>
        <div class="headerContact">
             <div class="contact">+7-8352-20-12-09, telegram</div>
-            <div class="headerText">Электронная сервисная книжка "Мой Силант"
+            <div class="headerText">
+                Электронная сервисная книжка
+                <span class="headerTextMob">"Мой Силант"</span>
             </div>
-            <div class="headerTextMob">Электронная сервисная книжка
-            </div>
+
        </div>
         {% if not request.user.is_authenticated %}
-    <a href="{% url 'login' %}" ><button class="headerIntOut">Log In</button></a>
-    {% else %}
-    <a href="{% url 'logout' %}" ><button class="headerIntOut">Log Out</button></a>
-    {% endif %}
+            <a href="{% url 'login' %}" ><button class="headerIntOutButton">Log In</button></a>
+        {% else %}
+            <a href="{% url 'logout' %}" ><button class="headerIntOutButton">Log Out</button></a>
+        {% endif %}
     </header>
 
     <content class="content">
@@ -36,12 +38,12 @@
         </div>
 
         <div>Результат поиска:</div>
-<!--        <div>-->
+        <div>
 
-<!--        {% block content %}-->
-<!--        {% endblock content %}-->
+            {% block content %}{% endblock content %}
 
-<!--        </div>-->
+
+        </div>
 
 
     </content>

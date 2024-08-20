@@ -1,0 +1,52 @@
+{% extends 'catalog/flatpages/default.html' %}
+{% load static %}
+{% block title %}ТО{% endblock title %}
+
+<link rel="stylesheet" href="../../static/css/styles.css">
+
+{% block content %}
+
+    <h3>Проведение Технического Обслуживания техники</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <table class="table_create">
+            <tr class="tr_1">
+                <td>{{ form.maintenanceType.label_tag }}</td>
+                <td>{{ form.maintenanceDate.label_tag }}</td>
+                <td>{{ form.motorResource.label_tag }}</td>
+                <td>{{ form.workOrderNumber.label_tag }}</td>
+                <td>{{ form.workOrderDate.label_tag }}</td>
+                <td>{{ form.organMaintenance.label_tag }}</td>
+                <td>{{ form.machine.label_tag }}</td>
+                <td>{{ form.serviceCompany.label_tag }}</td>
+
+            </tr>
+            <tr>
+
+                <td>{{ form.maintenanceType }}</td>
+                <td>{{ form.maintenanceDate }}</td>
+                <td>{{ form.motorResource }}</td>
+                <td>{{ form.workOrderNumber }}</td>
+                <td>{{ form.workOrderDate }}</td>
+                <td>{{ form.organMaintenance }}</td>
+                <td>{{ form.machine }}</td>
+                <td>{{ form.serviceCompany }}</td>
+
+            </tr>
+        </table>
+
+
+
+        <div class="tableContainerButton" style="margin-top: 5px;">
+            <button class="tableButton" type="submit">Save</button>
+        </div>
+    </form>
+
+    <div class="tableContainerButton" style="margin-top: 5px;">
+        <a href="{% url 'machines' %}"><button
+                class="tableButton">Cansel</button></a>
+    </div>
+
+{% endblock content %}
