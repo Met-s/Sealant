@@ -1,25 +1,42 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+from account.models import UserAuth
+from .forms import *
+
+
+from django.contrib.auth.decorators import login_required, permission_required
+from django.db.models import Q
+from rest_framework import permissions
+from rest_framework import viewsets
 
 import django_filters.rest_framework
-from django.shortcuts import render, redirect
-from django.views.generic import ListView
-from rest_framework import viewsets
-from rest_framework import permissions
+from .serializers import *
+
+
+
+# from django.views.generic import ListView
+
+
 
 from .models import Role, Clients, Managers, MachineModel, EngineModel, \
     TransmissionModel, DriveAxleModel, SteerableAxleModel, ServiceCompany, \
     Machine, MaintenanceType, OrganMaintenance, Maintenance, FailureNode, \
     RepairMethod, Claims
-
-from .serializers import UserSerializer, RoleSerializer, ClientsSerializer, \
+from .models import *
+from .serializers import (UserSerializer, RoleSerializer,
+                            ClientsSerializer, \
     ManagersSerializer, MachineModelSerializer, EngineModelSerializer, \
     TransmissionModelSerializer, DriveAxleModelSerializer, \
     SteerableAxleModelSerializer, ServiceCompanySerializer, MachineSerializer, \
     MaintenanceTypeSerializer, OrganMaintenanceSerializer, \
     MaintenanceSerializer, FailureNodeSerializer, RepairMethodSerializer, \
-    ClaimsSerializer
+    ClaimsSerializer)
+#
 
-from django.contrib.auth.models import User
-from .forms import *
+
+
+# from .serializers import *
 
 
 class ReadOnly(permissions.BasePermission):
@@ -112,14 +129,13 @@ class MachineViewSet(viewsets.ModelViewSet):
     serializer_class = MachineSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['id', 'machineSerialNumber', 'machineModel',
-                        'engineModel','engineNumber', 'transmissionModel',
+                        'engineModel', 'engineNumber', 'transmissionModel',
                         'transmissionNumber', 'driveAxleModel',
                         'driveAxleNumber', 'steerableAxleNumber',
                         'deliveryContractNumber', 'shipmentDate',
                         'consignee', 'deliveryAddress', 'equipment',
                         'client', 'serviceCompany']
     permission_classes = [permissions.IsAuthenticated | ReadOnly]
-
 
 
 class MaintenanceTypeViewSet(viewsets.ModelViewSet):
@@ -175,10 +191,154 @@ class ClaimsViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated | ReadOnly]
 
 
-class MachineList(ListView):
-    model = Machine
-    template_name = 'catalog/machine_all.html'
-    context_object_name = 'machines'
+# class MachineList(ListView):
+#     model = Machine
+#     template_name = 'catalog/machine_all.html'
+#     context_object_name = 'machines'
+
+
+def machine_list(request):
+    user = request.user
+
+
+    machine_models_name = MachineModel.objects.values_list('name', flat=True).distinct()
+
+
+    engine_models_name = EngineModel.objects.values_list('name',
+                                                         flat=True).distinct()
+
+
+    transmission_models_name = TransmissionModel.objects.values_list(
+        'name', flat=True).distinct()
+    steerable_axle_models_name = SteerableAxleModel.objects.values_list(
+        'name', flat=True).distinct()
+
+    drive_axle_models_name = DriveAxleModel.objects.values_list('name',
+                                                                flat=True).distinct()
+
+
+
+    filter_machine_model = request.GET.get('machine_model')
+    filter_engine_model = request.GET.get('engine_model')
+    filter_transmission_model = request.GET.get('transmission_model')
+    filter_steerable_axle_model = request.GET.get('steerable_axle_model')
+    filter_drive_axle_model = request.GET.get('drive_axle_model')
+
+
+    try:
+        machine_model_id = MachineModel.objects.get(name=filter_machine_model)
+
+    except:
+        machine_model_id = ''
+
+    try:
+        engine_model_id = EngineModel.objects.get(name=filter_engine_model)
+    except:
+        engine_model_id = ''
+
+    try:
+        transmission_model_id = TransmissionModel.objects.get(name=filter_transmission_model)
+
+    except:
+        transmission_model_id = ''
+    try:
+        steerable_axle_model_id = SteerableAxleModel.objects.get(name=filter_steerable_axle_model)
+
+    except:
+        steerable_axle_model_id = ''
+
+    try:
+        drive_axle_model_id = DriveAxleModel.objects.get(name=filter_drive_axle_model)
+
+    except:
+        drive_axle_model_id = ''
+
+
+    try:
+        role_id = UserAuth.objects.filter(user_auth__username=user).values('role_auth')[0]['role_auth']
+
+        role = Role.objects.get(id=role_id)
+    except:
+        role = 'Статус не определён'
+    try:
+        client_id = UserAuth.objects.filter(user_auth__username=user).values('client_auth')[0]['client_auth']
+
+        client_name = Clients.objects.get(id=client_id)
+    except:
+        client_name = ''
+    try:
+        serviceCompany_id = UserAuth.objects.filter(user_auth__username=user).values('serviceCompany_auth')[0]['serviceCompany_auth']
+
+
+        serviceCompany__name = ServiceCompany.objects.get(id=serviceCompany_id)
+
+    except:
+        serviceCompany__name = ''
+
+    managers = False
+    client = False
+    serviceCompany = False
+    role_error = False
+
+    if str(role) == 'Managers':
+        managers = True
+    if str(role) == 'Client':
+        client = True
+    if str(role) == 'Service Company':
+        serviceCompany = True
+    if str(role) == 'Статус не определён':
+        role_error = True
+
+    q_filter = Q()
+    if filter_machine_model:
+        q_filter &= Q(machineModel=machine_model_id)
+    if filter_engine_model:
+        q_filter &= Q(engineModel=engine_model_id)
+    if filter_transmission_model:
+        q_filter &= Q(transmissionModel=transmission_model_id)
+    if filter_steerable_axle_model:
+        q_filter &= Q(steerableAxleModel=steerable_axle_model_id)
+    if filter_drive_axle_model:
+        q_filter &= Q(driveAxleModel=drive_axle_model_id)
+
+
+    if client_name:
+        machines = Machine.objects.filter(client=client_id)
+    elif serviceCompany__name:
+        machines = Machine.objects.filter(serviceCompany=serviceCompany_id)
+    elif (filter_machine_model or filter_engine_model or
+          filter_transmission_model or filter_steerable_axle_model or filter_drive_axle_model):
+
+        machines = Machine.objects.filter(q_filter)
+    else:
+        machines = Machine.objects.all().order_by('-shipmentDate')
+
+
+
+    if not user.is_authenticated:
+        hideInfo = 'display: none;'
+    else:
+        hideInfo = ''
+
+    return render(request, 'catalog/machine_all.html', {
+        'machines': machines,
+        'machine_models_name': machine_models_name,
+        'selected_filter': filter_machine_model,
+        'filter_engine_model': filter_engine_model,
+        'transmission_models_name': transmission_models_name,
+        'filter_transmission_model': filter_transmission_model,
+        'steerable_axle_models_name': steerable_axle_models_name,
+        'filter_steerable_axle_model': filter_steerable_axle_model,
+        'drive_axle_models_name': drive_axle_models_name,
+        'filter_drive_axle_model': filter_drive_axle_model,
+
+        'user': user, 'hideInfo': hideInfo, 'role': role,
+        'engine_models_name': engine_models_name,
+        'client': client, 'client_name': client_name, 'managers': managers,
+        'serviceCompany': serviceCompany,
+        'serviceCompany__name': serviceCompany__name,
+        'role_error': role_error
+    })
 
 
 def machine_create(request):

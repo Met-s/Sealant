@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from catalog.models import Role, Clients, ServiceCompany
 
 
+# from catalog.models import Role, Clients, ServiceCompany
+
+
 class UserAuth(models.Model):
     user_auth = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     role_auth = models.ForeignKey(Role, on_delete=models.DO_NOTHING)

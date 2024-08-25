@@ -95,7 +95,7 @@ class Machine(models.Model):
     engineNumber = models.TextField(unique=True)  # Серийный номер двигателя
     transmissionModel = models.ForeignKey(TransmissionModel,
                                           on_delete=models.CASCADE)  #
-    # Модель трансмиссии
+    # Модель трансмиссии NAN
     transmissionNumber = models.TextField(unique=True)  # Серийный номер
     # трансмиссии
     driveAxleModel = models.ForeignKey(DriveAxleModel,
@@ -105,7 +105,7 @@ class Machine(models.Model):
     # моста
     steerableAxleModel = models.ForeignKey(SteerableAxleModel,
                                            on_delete=models.CASCADE)  #
-    # Модель управляемого моста
+    # Модель управляемого моста NAN
     steerableAxleNumber = models.TextField(unique=True)  # Номер управляемого
     # моста
     deliveryContractNumber = models.TextField()  # Номер контракта на поставку
@@ -116,6 +116,9 @@ class Machine(models.Model):
     client = models.ForeignKey(Clients, on_delete=models.CASCADE)
     serviceCompany = models.ForeignKey(ServiceCompany,
                                        on_delete=models.CASCADE)  # Сервисная компания
+
+    def __str__(self):
+        return f'{self.machineSerialNumber} : {self.machineModel}'
 
 
 class MaintenanceType(models.Model):

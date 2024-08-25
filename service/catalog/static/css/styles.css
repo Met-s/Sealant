@@ -94,6 +94,7 @@ header {
     height: 100%;
 }
 
+
 /*
 ==========================================================
 
@@ -139,20 +140,7 @@ tr {
     justify-content: flex-end;
     margin-top: 10px;
 }
-.tr_3 {
 
-
-    width: 80%;
-    border: 1px solid red;
-    max-width: 1em;
-    overflow: hidden;
-    background: #1A01CC;
-
-
-    /*max-height: 18px;*/
-    /*overflow: auto;*/
-    /*max-content: 18px;*/
-}
 .tableButton {
     width: 100px;
     height: 30px;
@@ -165,6 +153,7 @@ tr {
     text-align: center;
     cursor: pointer;
 }
+
 /*__~~~~~~_*/
 
 

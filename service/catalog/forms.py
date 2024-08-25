@@ -13,6 +13,9 @@ class MachineForm(forms.ModelForm):
                   'shipmentDate', 'consignee', 'deliveryAddress',
                   'equipment', 'client', 'serviceCompany']
 
+        # def __str__(self):
+        #     return f'{self.machineSerialNumber} : {self.machineModel}'
+
 
 class MaintenanceForm(forms.ModelForm):
     class Meta:

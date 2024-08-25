@@ -2,6 +2,102 @@
 {% load static %}
 {% block title %}Все машины{% endblock %}
 <link rel="stylesheet" href="../../static/css/styles.css">
+
+{% block user %}
+<div>
+    <div>
+        Пользователь: {{ user }} Статус: {{ role }}
+        {% if client_name %}}
+        Клиент: {{ client_name }}
+        {% endif %}
+
+        {% if serviceCompany__name %}
+        Сервисная компания: {{ serviceCompany__name }}
+        {% endif %}
+    </div>
+    <div>Информация о комплектации и технических характеристиках Вашей
+        техники</div>
+    <div>
+        <a href="{% url 'machines' %}"><button class="tableButton">общая информация</button></a>
+        <a href="{% url 'machines' %}"><button class="tableButton">ТО</button></a>
+        <a href="{% url 'machines' %}"><button class="tableButton">рекламации</button></a>
+        {% if request.user.is_authenticated %}
+            {% if not role_error or request.user.is_superuser %}
+                {% if manager or request.user.is_superuser %}
+                    {% if self.url is machine_list %}
+                        <a href="{% url 'machine_create' %}"><button class="tableButton">создание учётной карточки</button></a>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+ </div>
+{% endblock user %}
+{% block filter %}
+<div class="filter">
+    <form class="filterForm" method="get" action="{% url 'machines' %}">
+
+
+
+        <label for="machine_model">Модель техники:  </label>
+        <select name="machine_model" id="machine_model">
+            <option value="">Показать все</option>
+                {% for model in machine_models_name %}
+                    <option value="{{ model }}"
+                        {% if model == selected_filter %}selected{% endif %}>
+                        {{ model }}
+                    </option>
+                {% endfor %}
+        </select>
+        <label for="engine_model">Модель двигателя:</label>
+        <select name="engine_model" id="engine_model">
+            <option value="">Показать все</option>
+                {% for model in engine_models_name %}
+                    <option value="{{ model}}"
+                        {% if model == filter_engine_model %}selected{% endif %}>
+                        {{ model }}
+                    </option>
+                {% endfor %}
+        </select>
+        <label for="transmission_model">Модель трансмиссии:</label>
+        <select name="transmission_model" id="transmission_model">
+            <option value="">Показать все</option>
+                {% for model in transmission_models_name %}
+                    <option value="{{ model }}"
+                        {% if model == filter_transmission_model  %}selected{% endif %}>
+                        {{ model }}
+                    </option>
+                {% endfor %}
+        </select>
+        <label for="drive_axle_model">Модель ведущего моста</label>
+        <select name="drive_axle_model" id="drive_axle_model">
+            <option value="">Показать все</option>
+                {% for model in drive_axle_models_name %}
+                    <option value="{{ model }}"
+                        {% if model == filter_drive_axle_model %}selected{% endif %}>
+                        {{ model }}
+                    </option>
+                {% endfor %}
+        </select>
+        <label for="steerable_axle_model">Модель управляемого моста</label>
+        <select name="steerable_axle_model" id="steerable_axle_model">
+            <option value="">Показать все</option>
+                {% for model in steerable_axle_models_name %}
+                    <option value="{{ model }}"
+                        {% if model == filter_steerable_axle_model %}selected{% endif %}>
+                        {{ model }}
+                    </option>
+                {% endfor %}
+        </select>
+
+
+        <input type="submit" value="Найти" />
+    </form>
+
+</div>
+{% endblock filter %}
+
+
 {% block content %}
 <div class="div">
  <table class="table">
@@ -49,9 +145,5 @@
         {% endfor %}
     </table>
 </div>
-
-
-
-
 {% endblock content %}
 
