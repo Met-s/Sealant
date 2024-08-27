@@ -100,8 +100,9 @@
 
 {% block content %}
 <div class="div">
- <table class="table">
+ <table class="table" cellpadding="0">
         <tr class="tr_1">
+            <td></td>
             <td>Зав. № машины</td>
             <td>Модель техники</td>
             <td>Модель двигателя</td>
@@ -123,6 +124,7 @@
         {% for mach in machines %}
 
         <tr class="tr_2">
+            <td></td>
             <td>{{ mach.machineSerialNumber }}</td>
             <td>{{ mach.machineModel }}</td>
             <td>{{ mach.engineModel }}</td>
